@@ -45,7 +45,7 @@ let currentItem = 0;
 
 //Loading initial item
 window.addEventListener("DOMContentLoaded", function () {
-  showPerson(currentItem);
+  showPerson();
 });
 
 // Left Button Functionality
@@ -54,7 +54,7 @@ prevBtn.addEventListener("click", function () {
   if (currentItem < 0) {
     currentItem = 3;
   }
-  showPerson(currentItem);
+  showPerson();
 });
 
 // Right Button Functionality
@@ -63,19 +63,19 @@ nextBtn.addEventListener("click", function () {
   if (currentItem > reviews.length - 1) {
     currentItem = 0;
   }
-  showPerson(currentItem);
+  showPerson();
 });
 
 // Random Button Functionality
 randomBtn.addEventListener("click", function () {
   const random = Math.floor(Math.random() * reviews.length);
   currentItem = random;
-  showPerson(currentItem);
+  showPerson();
 });
 
 //Setting Person Details from item number
-function showPerson(newItem) {
-  const item = reviews[newItem];
+function showPerson() {
+  const item = reviews[currentItem];
   personImg.src = item.img;
   personName.textContent = item.name;
   personJob.textContent = item.job;
