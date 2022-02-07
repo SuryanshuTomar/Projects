@@ -68,8 +68,7 @@ nextBtn.addEventListener("click", function () {
 
 // Random Button Functionality
 randomBtn.addEventListener("click", function () {
-  const random = Math.floor(Math.random() * reviews.length);
-  currentItem = random;
+  currentItem = Math.floor(Math.random() * reviews.length);
   showPerson();
 });
 
