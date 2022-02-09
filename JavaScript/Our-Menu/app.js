@@ -71,4 +71,89 @@ const menu = [
     img: "./images/item-9.jpeg",
     desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
   },
+  {
+    id: 10,
+    title: "steak dinner",
+    category: "dinner",
+    price: 39.99,
+    img: "./images/item-10.jpeg",
+    desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
+  },
 ];
+
+const sectionCenter = document.querySelector(".section-center");
+const filterBtnContainer = document.querySelector(".btn-container");
+
+// On Will load it will populate or display all menu items.
+window.addEventListener("DOMContentLoaded", function () {
+  populateMenuItems(menu);
+  populateFilterButtons(menu);
+});
+
+//This will populate the menu items in html page according to the menu items passed.
+function populateMenuItems(menuItems) {
+  let displayMenu = menuItems.map(function (item) {
+    // console.log(item);
+    return `<article class="menu-item">
+          <img src=${item.img} alt=${item.title} class="photo" />
+          <div class="item-info">
+            <header>
+              <h4>${item.title}</h4>
+              <h4 class="price">$${item.price}</h4>
+            </header>
+            <p class="item-text">
+              ${item.desc}
+            </p>
+          </div>
+        </article>`;
+  });
+  displayMenu = displayMenu.join("");
+  sectionCenter.innerHTML = displayMenu;
+  // console.log(displayMenu);
+}
+
+function populateFilterButtons(newMenu) {
+  const category = newMenu.reduce(
+    function (values, item) {
+      if (!values.includes(item.category)) {
+        values.push(item.category);
+      }
+      return values;
+    },
+    ["all"]
+  );
+
+  const categoryBtns = category
+    .map(function (categoryItem) {
+      return `<button class="filter-btn" type="button" data-id="${categoryItem}">${categoryItem}</button>`;
+    })
+    .join("");
+
+  filterBtnContainer.innerHTML = categoryBtns;
+  // console.log(categoryBtns);
+
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  // console.log(filterBtns);
+  applyFilter(filterBtns);
+}
+
+// Filter items
+function applyFilter(filterBtns) {
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      // Accessing the dataset property which looks like data-{setName} in html
+      const category = e.currentTarget.dataset.id;
+      const menuCategory = menu.filter(function (menuItem) {
+        return menuItem.category === category;
+      });
+
+      // Making a check because there is no category named all in menu array dataset.
+      if (category === "all") {
+        populateMenuItems(menu);
+      } else {
+        populateMenuItems(menuCategory);
+      }
+      // console.log(menuCategory);
+    });
+  });
+}
