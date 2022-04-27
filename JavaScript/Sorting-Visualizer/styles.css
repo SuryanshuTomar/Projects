@@ -1,0 +1,14 @@
+/* VARIABLES  */:root {  --color-1: #ffc2c3;  --color-2: #ff8c8c;  --color-3: #f98866;  --color-4: #e07a5f;  --color-5: #ff420e;  --color-6: #80bd9e;  --color-7: #1b998b;  --color-8: #028c6a;  --color-9: #dcd6f7;  --color-10: #f8f1ff;  --color-11: #ffe0ac;  --color-12: #f2cc8f;  --color-13: #3d405b;  --color-14: #cda34f;  --color-15: #e9e7da;  --color-16: #636b46;  --color-17: #373f27;}
+/* //////////////////////////////////////////////////////////////////////////////////////////// */
+/* BODY ELEMENT */html, body {  height: 100%;}body {  background-color: var(--color-15);}
+/* /////////////////////////////////////////////////////////////////////////////////////////// */
+/* NAVBAR */.navbar {  background-color: var(--color-17);}
+/* NAVBAR INPUT RANGE */.form-range::-webkit-slider-thumb,.form-range:focus::-webkit-slider-thumb {  background: var(--color-3);  cursor: pointer; /* Cursor on hover */}.form-range:focus::-webkit-slider-thumb {  background: var(--color-3);  cursor: pointer; /* Cursor on hover */  box-shadow: 1px 1px 4px var(--color-4);}.form-range:hover::-webkit-slider-thumb {  background: var(--color-3);  cursor: pointer; /* Cursor on hover */  box-shadow: 4px 4px 15px var(--color-4);}
+/* NAVBAR SORT BUTTON */.btn-danger,.btn-danger:active,.btn-danger:visited {  border-color: var(--color-3);  background-color: var(--color-3);}.btn-danger:focus {  border-color: var(--color-3);  background-color: var(--color-3);  box-shadow: 1px 1px 4px var(--color-3);}.btn-danger:hover {  border-color: var(--color-4);  background-color: var(--color-4);  box-shadow: 1px 1px 10px var(--color-4);}
+/* /////////////////////////////////////////////////////////////////////////////////////// */
+/* RENDERED ARRAY */
+#array-container {  /* background-color: var(--color-13); */  height: 22rem;  width: 80vw;  position: relative;  justify-content: center;}.block {  width: 1rem;  background-color: var(--color-4);  position: absolute;  transition: 0.2s all ease;  bottom:0px;}
+.block_id {  position: absolute;  color: black;  margin-top: -30px;  width: 100%;  text-align: center;  font-size: 0.7rem;}
+.btn {  display: flex;  justify-content: center;  margin: 25px;}
+/* ////////////////////////////////////////////////////////////////////////////////// */
+.footer {  background-color: var(--color-17);  margin-bottom: 0;  height: 5vh;  color: var(--color-15);}
