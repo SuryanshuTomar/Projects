@@ -83,7 +83,7 @@ const Card = styled.div`
 		width: 100%;
 		text-align: center;
 		font-weight: 600;
-		font-size: 1rem;
+		font-size: 0.75rem;
 		height: 40%;
 		display: flex;
 		justify-content: center;
