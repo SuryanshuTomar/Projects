@@ -1,0 +1,99 @@
+.card-container {
+	display: flex;
+	justify-content: center;
+}
+
+.card-base {
+	width: 350px;
+	height: 500px;
+	margin: 30px;
+	border-radius: 40px;
+	box-shadow: 2px 2px 22px rgba(0, 0, 0, 0.2);
+	transition: 0.3s box-shadow, 0.3s margin-top ease-in-out;
+}
+
+.card-base:hover {
+	box-shadow: 2px 12px 32px rgba(0, 0, 0, 0.6);
+	cursor: pointer;
+	margin-top: 20px;
+}
+
+.card-one {
+	background-color: #ffe697;
+}
+
+.card-two {
+	background-color: #e4e4e4;
+}
+
+.card-three {
+	background-color: #b7e0ff;
+}
+
+.img-one {
+	width: 350px;
+	height: 300px;
+	border-radius: 40px;
+	background: url("./ajlG2NZ.jpg") no-repeat;
+	background-size: 150%;
+}
+
+.img-two {
+	width: 350px;
+	height: 300px;
+	border-radius: 40px;
+	background: url("./RTwoB09.jpg") no-repeat;
+	background-size: 130%;
+	background-position-x: 60%;
+	background-position-y: 30%;
+}
+
+.img-three {
+	width: 350px;
+	height: 300px;
+	border-radius: 40px;
+	background: url("/XBAbnsC.jpg") no-repeat;
+	background-size: 130%;
+}
+
+.btn-base {
+	display: flex;
+	width: 260px;
+	height: 60px;
+	border-radius: 40px;
+	margin: 0 auto;
+	margin-top: -25px;
+	justify-content: center;
+	font-size: 30px;
+	align-items: center;
+	color: white;
+}
+
+.btn-one {
+	background-color: #ff8a8a;
+}
+
+.btn-two {
+	background-color: #bfbbbb;
+}
+
+.btn-three {
+	background-color: #31a2fa;
+}
+
+.content {
+	padding: 5px 45px;
+	font-size: 18px;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@media (max-width: 1300px) {
+	.card-container {
+		flex-direction: column;
+	}
+
+	.card-base {
+		margin: 0 auto;
+		margin-top: 20px;
+	}
+}
