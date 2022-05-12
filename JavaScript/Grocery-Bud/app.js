@@ -55,6 +55,7 @@ function addItem(event) {
 
 		// append child
 		list.appendChild(element);
+		grocery.value = "";
 		// display alert
 		displayAlert("item added to the list", "success");
 		// show container
@@ -113,7 +114,7 @@ function deleteItem(event) {
 	displayAlert("Item Removed from the list", "danger");
 	setBackToDefault();
 	// remove from localStorage
-	// removeFromLocalStorage(id);
+	removeFromLocalStorage(id);
 }
 
 // display alert
@@ -128,7 +129,10 @@ const displayAlert = (text, action) => {
 
 // ****** LOCAL STORAGE **********
 function addToLocalStorage(id, value) {
-	console.log("added to local storage");
+	const grocery = { id, value };
+	let items = getLocalStorage();
+	items.push(grocery);
+	localStorage.setItem("list", JSON.stringify(items));
 }
 
 // ****** SET BACK TO DEFAULT **********
@@ -139,8 +143,27 @@ function setBackToDefault() {
 	submitBtn.textContent = "Submit";
 }
 
-function removeFromLocalStorage(id) {}
+function removeFromLocalStorage(id) {
+	const items = getLocalStorage();
+	const filteredItems = items.filter((item) => item.id !== id);
+	localStorage.setItem("list", JSON.stringify(filteredItems));
+}
 
-function editLocalStorage(id, value) {}
+function editLocalStorage(id, value) {
+	const items = getLocalStorage();
+	const editedItems = items.map((item) => {
+		if (item.id === id) {
+			item.value = value;
+		}
+		return item;
+	});
+	localStorage.setItem("list", JSON.stringify(editedItems));
+}
+
+function getLocalStorage() {
+	return localStorage.getItem("list")
+		? JSON.parse(localStorage.getItem("list"))
+		: [];
+}
 
 // ****** SETUP ITEMS **********
