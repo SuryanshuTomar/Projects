@@ -66,7 +66,7 @@ function addItem(event) {
 		// set back to default
 		setBackToDefault(event.target.value);
 	} else if (value && editFlag) {
-		console.log("Editing");
+		// submitBtn.textContent = "Edit";
 	} else {
 		displayAlert("Empty Value", "danger");
 	}
@@ -86,13 +86,27 @@ function clearItems() {
 }
 
 // edit function
-function editItem() {
-	console.log("item edit");
+function editItem(event) {
+	const element = event.currentTarget.parentElement.parentElement;
+	editElement = element;
+	editFlag = true;
+	editId = element.dataset.id;
+	submitBtn.textContent = "Edit";
+	grocery.value = element.innerText;
 }
 
 // delete function
-function deleteItem() {
-	
+function deleteItem(event) {
+	const element = event.currentTarget.parentElement.parentElement;
+	const id = element.dataset.id;
+	list.removeChild(element);
+	if (list.children.length === 0) {
+		container.classList.remove("show-container");
+	}
+	displayAlert("Item Removed from the list", "danger");
+	setBackToDefault();
+	// remove from localStorage
+	// removeFromLocalStorage(id);
 }
 
 // display alert
@@ -117,5 +131,7 @@ function setBackToDefault() {
 	editId = "";
 	submitBtn.textContent = "Submit";
 }
+
+function removeFromLocalStorage(id) {}
 
 // ****** SETUP ITEMS **********
