@@ -1,0 +1,14 @@
+.nav-btn {
+	font-weight: bold;
+	background-color: bisque;
+	color: #444;
+	border: none;
+	border-radius: 25px;
+	padding: 2px 10px;
+	transition: all 0.25s linear;
+}
+
+.nav-btn:hover {
+	box-shadow: 0 0 20px rgba(191, 223, 124, 0.8);
+	cursor: pointer;
+}
