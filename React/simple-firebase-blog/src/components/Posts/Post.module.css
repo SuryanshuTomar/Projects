@@ -1,0 +1,62 @@
+.post {
+	background-color: rgb(252, 228, 193);
+	width: 750px;
+	border-radius: 1rem;
+	min-height: 100px;
+	padding: 1rem;
+	box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+	margin: 20px auto;
+}
+
+.post-title {
+	text-align: center;
+}
+
+.post-body {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 300;
+	font-style: italic;
+	max-height: 300px;
+	overflow-y: scroll;
+	text-align: justify;
+	padding: 10px;
+	margin: 10px auto;
+}
+
+p::first-letter {
+	font-size: 2rem;
+	color: black;
+}
+
+.post-body::-webkit-scrollbar {
+	width: 5px;
+}
+
+.post-body::-webkit-scrollbar-thumb {
+	background-color: sandybrown;
+	width: 5px;
+}
+
+.post-author {
+	font-family: "Grape Nuts", sans-serif;
+	font-size: 1.2rem;
+	margin-top: 20px;
+	margin-left: 10px;
+	color: grey;
+}
+
+.react i {
+	margin: 10px;
+	margin-top: 25px;
+}
+
+.react span {
+	margin-right: 15px;
+}
+
+.react span p {
+	font-family: "Montserrat", sans-serif;
+	font-weight: bold;
+	display: inline;
+	font-size: 0.75rem;
+}

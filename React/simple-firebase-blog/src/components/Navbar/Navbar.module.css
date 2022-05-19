@@ -6,6 +6,7 @@
 	display: flex;
 	justify-content: center;
 	flex: wrap;
+	transition: all 0.5s ease-in-out;
 }
 
 .navbar {
@@ -26,6 +27,7 @@
 }
 
 .nav-btn {
+	font-weight: bold;
 	background-color: bisque;
 	color: #444;
 	border: none;
