@@ -10,9 +10,9 @@ body {
 	margin: 0;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	/* font-family: "Indie Flower", cursive;
-	font-family: "Merriweather", serif; */
-	font-family: "Roboto", sans-serif;
+	font-family: "Indie Flower", cursive;
+	/* font-family: "Merriweather", serif; */
+	/* font-family: "Roboto", sans-serif; */
 	background-color: beige;
 }
 

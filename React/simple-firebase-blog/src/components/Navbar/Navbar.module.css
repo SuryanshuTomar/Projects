@@ -1,0 +1,37 @@
+.nav-container {
+	background-color: black;
+	color: rgb(172, 170, 170);
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.navbar {
+	display: flex;
+	height: 100%;
+	width: 30rem;
+	padding: 10px;
+	justify-content: space-around;
+}
+
+.nav-link {
+	letter-spacing: 1.5px;
+	transition: all 0.25s linear;
+}
+.nav-link:hover {
+	color: white;
+}
+
+.nav-btn {
+	background-color: bisque;
+	color: #444;
+	border: none;
+	border-radius: 25px;
+	padding: 2px 10px;
+	transition: all 0.25s linear;
+}
+
+.nav-btn:hover {
+	box-shadow: 0 0 20px rgba(191, 223, 124, 0.8);
+}
