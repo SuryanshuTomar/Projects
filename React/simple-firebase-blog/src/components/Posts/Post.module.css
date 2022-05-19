@@ -1,13 +1,3 @@
-.post {
-	background-color: rgb(252, 228, 193);
-	width: 750px;
-	border-radius: 1rem;
-	min-height: 100px;
-	padding: 1rem;
-	box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
-	margin: 20px auto;
-}
-
 .post-title {
 	text-align: center;
 }
