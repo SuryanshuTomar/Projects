@@ -35,37 +35,42 @@ function Post() {
 			</p>
 			<h4 className={styles["post-author"]}>@Author</h4>
 			<div className={styles.react}>
+				<div>
+					<span>
+						<i class="fa-solid fa-heart"></i>
+						<p>1</p>
+					</span>
+					<span>
+						<i class="fa-solid fa-thumbs-up"></i>
+						<p>1</p>
+					</span>
+					<span>
+						<i class="fa-solid fa-face-flushed"></i>
+						<p>1</p>
+					</span>
+					<span>
+						<i class="fa-solid fa-face-surprise"></i>
+						<p>1</p>
+					</span>
+					<span>
+						<i class="fa-solid fa-face-grin-stars"></i>
+						<p>1</p>
+					</span>
+					<span>
+						<i class="fa-solid fa-face-grin-squint-tears"></i>
+						<p>1</p>
+					</span>
+					<span>
+						<i class="fa-solid fa-face-sad-cry"></i>
+						<p>1</p>
+					</span>
+					<span>
+						<i class="fa-solid fa-ghost"></i>
+						<p>1</p>
+					</span>
+				</div>
 				<span>
-					<i class="fa-solid fa-heart"></i>
-					<p>1</p>
-				</span>
-				<span>
-					<i class="fa-solid fa-thumbs-up"></i>
-					<p>1</p>
-				</span>
-				<span>
-					<i class="fa-solid fa-face-flushed"></i>
-					<p>1</p>
-				</span>
-				<span>
-					<i class="fa-solid fa-face-surprise"></i>
-					<p>1</p>
-				</span>
-				<span>
-					<i class="fa-solid fa-face-grin-stars"></i>
-					<p>1</p>
-				</span>
-				<span>
-					<i class="fa-solid fa-face-grin-squint-tears"></i>
-					<p>1</p>
-				</span>
-				<span>
-					<i class="fa-solid fa-face-sad-cry"></i>
-					<p>1</p>
-				</span>
-				<span>
-					<i class="fa-solid fa-ghost"></i>
-					<p>1</p>
+					<i class="fa-solid fa-trash"></i>
 				</span>
 			</div>
 		</div>

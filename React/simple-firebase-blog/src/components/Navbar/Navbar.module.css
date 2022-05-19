@@ -24,6 +24,7 @@
 }
 .nav-link:hover {
 	color: white;
+	cursor: pointer;
 }
 
 .nav-btn {
@@ -38,6 +39,7 @@
 
 .nav-btn:hover {
 	box-shadow: 0 0 20px rgba(191, 223, 124, 0.8);
+	cursor: pointer;
 }
 
 @media (max-width: 450px) {
