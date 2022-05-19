@@ -5,7 +5,6 @@ function PostBlock(props) {
 	return (
 		<div className={styles["post"]} {...props}>
 			{props.children}
-			{console.log("props: ", props)}
 		</div>
 	);
 }
