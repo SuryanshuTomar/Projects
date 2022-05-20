@@ -7,3 +7,15 @@
 	box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
 	margin: 20px auto;
 }
+
+@media (max-width: 800px) {
+	.post {
+		width: 550px;
+	}
+}
+@media (max-width: 600px) {
+	.post {
+		width: auto;
+		margin: 10px;
+	}
+}
