@@ -62,4 +62,5 @@ p::first-letter {
 
 .react i:hover {
 	cursor: pointer;
+	color: rgb(70, 58, 58);
 }
