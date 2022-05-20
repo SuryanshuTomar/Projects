@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { auth, provider } from "../../firebase/firebase-config";
-import { signInWithPopup } from "firebase/auth";
+import { signInWithPopup, onAuthStateChanged, signOut } from "firebase/auth";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -9,6 +9,21 @@ import styles from "./Login.module.css";
 export const Login = () => {
 	const { setIsAuth } = useContext(AuthContext);
 	const navigate = useNavigate();
+
+	onAuthStateChanged(auth, (currentUser) => {
+		if (currentUser) {
+			if (currentUser.emailVerified) {
+				localStorage.setItem("user", JSON.stringify(currentUser));
+				// Dispatch the success action// update state. isAuthenticated=true, user=currentUser
+			} else {
+				// signOut();
+				alert("Your email can not be verified.");
+			}
+		} else {
+			// User is signed out
+			// signOut();
+		}
+	});
 
 	const signInWithGoogle = () => {
 		signInWithPopup(auth, provider)

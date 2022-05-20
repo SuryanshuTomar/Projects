@@ -1,15 +1,44 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import useInput from "../../hooks/UseInput";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+
+import { db, auth } from "../../firebase/firebase-config";
+import { addDoc, collection } from "firebase/firestore";
 
 import PostBlock from "../Containers/PostBlock";
 import PostContainer from "../Containers/PostContainer";
-
 import styles from "./PostForm.module.css";
 import Button from "../Button/Button";
 
 function PostForm() {
+	const { isAuth } = useContext(AuthContext);
 	const [title, bindTitle, resetTitle] = useInput("");
 	const [postContent, bindPostContent, resetPostContent] = useInput("");
+	const navigate = useNavigate();
+
+	const postsCollectionRef = collection(db, "posts");
+
+	const createPost = async () => {
+		await addDoc(postsCollectionRef, {
+			title,
+			postContent,
+			postReaction: {
+				love: 0,
+				like: 0,
+				flush: 0,
+				surprise: 0,
+				hehe: 0,
+				rofl: 0,
+				cry: 0,
+				ghost: 0,
+			},
+			author: {
+				name: auth.currentUser.displayName,
+				id: auth.currentUser.uid,
+			},
+		});
+	};
 
 	const submitHandler = () => {
 		if (!title.trim()) {
@@ -20,11 +49,17 @@ function PostForm() {
 			alert("Post Content cannot be Empty!");
 			return;
 		}
-		console.log(title);
-		console.log(postContent);
 		resetTitle("");
 		resetPostContent("");
+		createPost();
+		navigate("/home");
 	};
+
+	useEffect(() => {
+		if (!isAuth) {
+			navigate("/home");
+		}
+	}, []);
 
 	return (
 		<form>
