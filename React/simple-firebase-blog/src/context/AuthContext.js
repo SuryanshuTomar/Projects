@@ -6,7 +6,10 @@ import { useNavigate } from "react-router-dom";
 export const AuthContext = createContext();
 
 export const AuthContextProvider = (props) => {
-	const [isAuth, setIsAuth] = useState(false);
+	const authState = localStorage.getItem("isAuth")
+		? localStorage.getItem("isAuth")
+		: false;
+	const [isAuth, setIsAuth] = useState(authState);
 	const navigate = useNavigate();
 
 	const signUserOut = () => {
