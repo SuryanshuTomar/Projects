@@ -1,0 +1,50 @@
+body {
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+		"Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+		"Helvetica Neue", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
+}
+
+.app {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background: linear-gradient(rgba(10, 99, 233, 0.1), rgba(221, 249, 42, 0.1)),
+		url("https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?w=2000");
+	background-size: cover;
+}
+
+form {
+	background-color: whitesmoke;
+	padding: 20px 60px;
+	border-radius: 15px;
+}
+
+h1 {
+	color: blueviolet;
+	text-align: center;
+}
+
+button {
+	width: 100%;
+	height: 40px;
+	padding: 10px;
+	margin: 15px auto;
+	font-size: 16px;
+	font-weight: bold;
+	cursor: pointer;
+	border: none;
+	background-color: blueviolet;
+	color: white;
+	border-radius: 25px;
+}
+
+
