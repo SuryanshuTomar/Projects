@@ -13,7 +13,7 @@ import Missing from "./components/Missing";
 function App() {
 	return (
 		<div className="App">
-			<Header />
+			<Header title="React Js Blog" />
 			<Nav />
 			<Routes>
 				<Route path="" element={<Home />} />
