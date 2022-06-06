@@ -39,7 +39,13 @@ function App() {
 	]);
 	const [search, setSearch] = useState("");
 	const [searchResults, setSearchResults] = useState([]);
-	const handleDelete = () => {};
+	const navigate = useNavigate();
+
+	const handleDelete = (id) => {
+		const postList = posts.filter((post) => post.id !== id);
+		setPosts(postList);
+		navigate("/");
+	};
 
 	return (
 		<div className="App">
