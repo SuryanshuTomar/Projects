@@ -10,6 +10,7 @@ import NewPost from "./components/NewPost";
 import PostPage from "./components/PostPage";
 import About from "./components/About";
 import Missing from "./components/Missing";
+import api from "./api/posts";
 
 function App() {
 	const [posts, setPosts] = useState([]);
@@ -19,6 +20,26 @@ function App() {
 	const [postBody, setPostBody] = useState("");
 
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		const fetchPosts = async () => {
+			try {
+				// With axios no need to convert response to json like in fetch. axios will automatically convert our response to json format
+				const response = await api.get("/posts");
+				if (response && response.data) setPosts(response.data);
+			} catch (err) {
+				if (err.response) {
+					// not in the 200 response range
+					console.log(err.response.data);
+					console.log(err.response.status);
+					console.log(err.response.headers);
+				} else {
+					console.log("Error : ", err.message);
+				}
+			}
+		};
+		fetchPosts();
+	}, []);
 
 	useEffect(() => {
 		const filteredResults = posts.filter(
