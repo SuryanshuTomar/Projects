@@ -1,0 +1,120 @@
+:root {
+	--clip-0: inset(50%);
+	--clip-1: inset(10% -5px 30% 0);
+	--clip-2: inset(25% -5px 50% 0);
+	--clip-3: inset(50% -5px 80% 0);
+	--clip-4: inset(25% -5px 50% 0);
+	--clip-5: inset(10% -5px 40% 0);
+}
+
+body {
+	text-align: center;
+}
+
+.glitch-btn-container {
+	height: 200px;
+	position: relative;
+	left: -50px;
+	top: 20px;
+}
+
+.glitch-btn {
+	border: none;
+	position: absolute;
+	background-color: white;
+	padding: 10px 20px;
+	box-shadow: 3px 3px 0 #f8f005, 5px 5px 0 #00e6f6;
+}
+
+.glitch-btn::after {
+	content: "Glitch Me";
+	background-color: rgba(99, 94, 94, 0.8);
+	color: white;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 5%;
+	right: 0;
+	bottom: 0;
+	width: 90%;
+	text-shadow: -3px -3px 3px #f8f005, 3px 3px 3px #00e6f6;
+	padding-top: 10px;
+	clip-path: var(--clip-0);
+}
+
+.glitch-btn:hover::after {
+	animation: 1.2s glitch;
+	animation-timing-function: steps(2, start);
+}
+.glitch-btn:hover {
+	animation: 1.2s glitchBtn;
+	animation-timing-function: steps(2, end);
+}
+
+@keyframes glitchBtn {
+	0% {
+		opacity: 10%;
+	}
+	20% {
+		opacity: 30%;
+	}
+	40% {
+		opacity: 80%;
+	}
+	60% {
+		opacity: 10%;
+	}
+	80% {
+		opacity: 30%;
+	}
+	100% {
+		opacity: 100%;
+	}
+}
+
+@keyframes glitch {
+	0% {
+		clip-path: var(--clip-1);
+		transform: translate(-10px, -10px);
+	}
+	10% {
+		clip-path: var(--clip-3);
+		transform: translate(10px, 10px);
+	}
+	20% {
+		clip-path: var(--clip-1);
+		transform: translate(-10px, 10px);
+	}
+	30% {
+		clip-path: var(--clip-3);
+		transform: translate(0px, 5px);
+	}
+	40% {
+		clip-path: var(--clip-2);
+		transform: translate(-5px, 0px);
+	}
+	50% {
+		clip-path: var(--clip-3);
+		transform: translate(5px, 0px);
+	}
+	60% {
+		clip-path: var(--clip-4);
+		transform: translate(5px, 10px);
+	}
+	70% {
+		clip-path: var(--clip-2);
+		transform: translate(-10px, 10px);
+	}
+	80% {
+		clip-path: var(--clip-5);
+		transform: translate(20px, -10px);
+	}
+	90% {
+		clip-path: var(--clip-1);
+		transform: translate(-10px, 0px);
+	}
+	100% {
+		clip-path: var(--clip-0);
+		transform: translate(0);
+	}
+}
