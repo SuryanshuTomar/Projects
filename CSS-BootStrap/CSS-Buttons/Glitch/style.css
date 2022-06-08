@@ -43,11 +43,11 @@ body {
 }
 
 .glitch-btn:hover::after {
-	animation: 1.2s glitch;
+	animation: 1.5s glitch;
 	animation-timing-function: steps(2, start);
 }
 .glitch-btn:hover {
-	animation: 1.2s glitchBtn;
+	animation: 1.5s glitchBtn;
 	animation-timing-function: steps(2, end);
 }
 
