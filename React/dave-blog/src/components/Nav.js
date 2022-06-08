@@ -7,6 +7,7 @@ function Nav({ search, setSearch }) {
 			<form onSubmit={(e) => e.preventDefault()} className="searchForm">
 				<label htmlFor="search">Search Posts</label>
 				<input
+					className="searchForm"
 					type="text"
 					id="search"
 					placeholder="Search Posts"
