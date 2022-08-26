@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -76,8 +74,8 @@
                     <input
                       type="range"
                       class="form-range border-color-warning"
-                      min="50"
-                      max="100"
+                      min="1"
+                      max="5"
                       step="1"
                       id="sort-speed"
                     />
@@ -162,20 +160,23 @@
 
     <!-- Rendered Array -->
     <section>
-      <div class="container-fluid">
-        <div
-          class="row justify-content-center align-items-end"
-          style="height: 80vh"
-        >
-          <div class="overflow-auto" id="array-container"></div>
-        </div>
+      <div class="sort-container">
+        <div class="array-container">
+          <div class="array-block">
+            <span class="element"></span>
+					<span class="element"></span>
+					<span class="element"></span>
+          </div>
+        </div>   
+        
       </div>
+
     </section>
 
-    <footer class="footer mt-3 pt-1  text-center fixed-bottom" text-center">
+    <footer class="footer" text-center">
       <span>Designed by DeathSlayer</span>
     </footer>
-    <script type="module" src="app.js"></script>
+     <script src="./app.js"  type="module"></script>
   </body>
 </html>
 
