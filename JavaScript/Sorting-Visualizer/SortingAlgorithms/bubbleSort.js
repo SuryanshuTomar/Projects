@@ -1,29 +1,28 @@
-import swap from "./swap.js";
+import { swap } from "./swap.js";
+import { sortingSpeed } from "../app.js";
 
-export default async function bubbleSort(blocks, delay = 50) {
-	// BubbleSort Algorithm
+// BubbleSort Algorithm
+async function bubbleSort(blocks) {
+	const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 	for (let i = 0; i < blocks.length; i += 1) {
 		for (let j = 0; j < blocks.length - i - 1; j += 1) {
 			// To change background-color of the
 			// blocks to be compared
-			blocks[j].style.backgroundColor = "#3d405b";
-			blocks[j + 1].style.backgroundColor = "palegreen";
+			blocks[j].style.backgroundColor = "green";
+			blocks[j + 1].style.backgroundColor = "yellowgreen";
 
-			// To wait for .1 sec
-			await new Promise((resolve) =>
-				setTimeout(() => {
-					resolve();
-				}, delay)
-			);
+			// Waiting Timer
+			let timer = 3000 - sortingSpeed() * 580;
+			await wait(timer);
 
-			console.log("run");
-			let value1 = Number(blocks[j].childNodes[0].innerHTML);
-			let value2 = Number(blocks[j + 1].childNodes[0].innerHTML);
+			// console.log("run");
+			let value1 = Number(blocks[j].textContent);
+			let value2 = Number(blocks[j + 1].textContent);
 
 			// To compare value of two blocks
 			if (value1 > value2) {
-				await swap(blocks[j], blocks[j + 1]);
-				blocks = document.querySelectorAll(".block");
+				swap(blocks[j], blocks[j + 1]);
+				blocks = document.querySelectorAll(".element");
 			}
 
 			// Changing the color to the previous one
@@ -33,6 +32,8 @@ export default async function bubbleSort(blocks, delay = 50) {
 
 		//changing the color of greatest element
 		//found in the above traversal
-		blocks[blocks.length - i - 1].style.backgroundColor = "deepskyblue";
+		blocks[blocks.length - i - 1].style.backgroundColor = "#028c6a";
 	}
 }
+
+export { bubbleSort };
