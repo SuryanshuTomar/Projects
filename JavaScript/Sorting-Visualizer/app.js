@@ -1,5 +1,7 @@
 import { bubbleSort } from "./SortingAlgorithms/bubbleSort.js";
+import { insertionSort } from "./SortingAlgorithms/insertionSort.js";
 import { selectionSort } from "./SortingAlgorithms/selectionSort.js";
+import { cycleSort } from "./SortingAlgorithms/cycleSort.js";
 
 const generateArrayElem = document.getElementById("generate-array");
 const arraySizeElem = document.getElementById("array-size");
@@ -33,6 +35,23 @@ const generateNewArray = (event) => {
 	}
 };
 
+const generateArrayFromData = (array) => {
+	let generatedArray = array;
+	arrayBlock.innerHTML = "";
+	for (let i = 0; i < arraySize; i++) {
+		let arrayValue = generatedArray[i];
+
+		// Creating element div
+		let array_ele = document.createElement("span");
+		array_ele.classList.add("element");
+
+		// Adding style to div
+		array_ele.style.height = `${arrayValue * 5}px`;
+		array_ele.textContent = arrayValue;
+		arrayBlock.appendChild(array_ele);
+	}
+};
+
 const getArraySize = (event) => {
 	console.log("Array Size : ", event.target.value);
 	arraySize = event.target.value;
@@ -54,15 +73,22 @@ const getAlgorithm = (event) => {
 
 const startSorting = (event) => {
 	console.log("DataSet : ", dataSet, "Array size: ", arraySize);
+
+	let blocks = document.querySelectorAll(".element");
 	if (dataSet === "" || dataSet === null || dataSet === undefined) {
-		console.log("No Algorithms Selected");
-	} else if (dataSet === "bubbleSort") {
-		let blocks = document.querySelectorAll(".element");
-		bubbleSort(blocks);
-	} else if (dataSet === "selectionSort") {
-		selectionSort(generatedArray);
+		alert("No Algorithms Selected");
 	} else {
-		console.log("Select any algorithm again !!!");
+		if (dataSet === "bubbleSort") {
+			bubbleSort(blocks);
+		} else if (dataSet === "selectionSort") {
+			selectionSort(generatedArray, blocks);
+		} else if (dataSet === "insertionSort") {
+			insertionSort(generatedArray, blocks);
+		} else if (dataSet === "cycleSort") {
+			cycleSort(generatedArray);
+		} else {
+			alert("Select any algorithm again !!!");
+		}
 	}
 };
 const generateRandomNumber = (maxValue) => {
@@ -84,4 +110,4 @@ sortSpeedElem.addEventListener("click", getSortSpeed);
 algorithmDropdownElem.addEventListener("click", getAlgorithm);
 sortElem.addEventListener("click", startSorting);
 
-export { arrayBlock, sortingSpeed };
+export { arrayBlock, sortingSpeed, generateArrayFromData };
