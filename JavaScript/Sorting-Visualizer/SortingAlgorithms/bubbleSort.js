@@ -34,6 +34,7 @@ async function bubbleSort(blocks) {
 		//found in the above traversal
 		blocks[blocks.length - i - 1].style.backgroundColor = "#028c6a";
 	}
+	alert("Sorting Done 🥳");
 }
 
 export { bubbleSort };
