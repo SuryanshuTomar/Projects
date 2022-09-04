@@ -23,6 +23,7 @@ function PostForm() {
 		await addDoc(postsCollectionRef, {
 			title,
 			postContent,
+			reactionUsers: [{ uid: "", isReactionPosted: false, type: {} }],
 			postReaction: {
 				love: 0,
 				like: 0,
@@ -59,7 +60,7 @@ function PostForm() {
 		if (!isAuth) {
 			navigate("/home");
 		}
-	}, []);
+	}, [isAuth, navigate]);
 
 	return (
 		<form>
