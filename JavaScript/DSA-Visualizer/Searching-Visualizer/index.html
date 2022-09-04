@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Searching Visualizer</title>
+		<link href="style.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<header>
+			<div class="head-container">
+				<h2>Searching Visualizer</h2>
+
+				<label>Array Size : </label>
+				<input
+					class="slider"
+					id="array-size"
+					type="range"
+					min="10"
+					max="50"
+				/>
+
+				<label>Search Speed : </label>
+				<input
+					class="slider"
+					id="search-speed"
+					type="range"
+					min="1"
+					max="5"
+				/>
+
+				<label>Select Search : </label>
+				<select id="searches" name="searches">
+					<option value="linear">Linear</option>
+					<option value="binary">Binary</option>
+				</select>
+			</div>
+		</header>
+
+		<section>
+			<div class="container">
+				<div class="search-container">
+					<div class="array" id="array">
+						<!-- 					<span class="element"></span>
+					<span class="element active"></span>
+					<span class="element"></span> -->
+					</div>
+					<div class="input-container">
+						<p id="target-label">Enter the target to search :</p>
+						<input id="target-input" type="text" placeholder="eg. 15" />
+						<br />
+						<button id="target-search">Start Search</button>
+					</div>
+				</div>
+			</div>
+		</section>
+		<footer>
+			<div class="foot-container">
+				<h2>Linear Search</h2>
+			</div>
+		</footer>
+		<script src="app.js" type="module"></script>
+	</body>
+</html>
