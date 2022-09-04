@@ -37,7 +37,6 @@ function Post() {
 			(elem) => elem.uid === auth.currentUser.uid
 		);
 
-		console.log(auth.currentUser.uid);
 		if (isCurrentUserFound) {
 			setReactChange(true);
 			hasCurrentUserPosted = isCurrentUserFound.isReactionPosted;
