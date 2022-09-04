@@ -13,9 +13,9 @@ function App() {
 				<Navbar />
 				<Routes>
 					<Route index element={<Post />} />
-					<Route path="/home" element={<Post />} />
-					<Route path="/create-post" element={<PostForm />} />
-					<Route path="/login" element={<Login />} />
+					<Route path="home" element={<Post />} />
+					<Route path="create-post" element={<PostForm />} />
+					<Route path="login" element={<Login />} />
 					<Route path="*" element={<NotFound />} />
 				</Routes>
 			</AuthContextProvider>
