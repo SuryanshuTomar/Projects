@@ -1,6 +1,12 @@
+// react
 // import { useState } from "react";
-import styles from "./Home.module.css";
 import { useFetch } from "../../hooks/useFetch";
+
+// styles
+import styles from "./Home.module.css";
+
+// components
+import RecipeList from "../../components/RecipeList";
 
 function Home() {
 	const {
@@ -13,9 +19,7 @@ function Home() {
 		<div className={styles.home}>
 			{error && <p className="error">{error}</p>}
 			{isPending && <p className="loading">Loading Recipes....</p>}
-			{recipes?.map((recipe) => (
-				<h2 key={recipe.id}>{recipe.title}</h2>
-			))}
+			{recipes && <RecipeList recipes={recipes} />}
 		</div>
 	);
 }
