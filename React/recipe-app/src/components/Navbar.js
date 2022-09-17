@@ -1,11 +1,19 @@
+// react
 import React from "react";
-import styles from "./Navbar.module.css";
-import { NavLink } from "react-router-dom";
+import { useTheme } from "../hooks/useTheme";
 import Searchbar from "./Searchbar";
 
+// styles
+import styles from "./Navbar.module.css";
+
+// React router
+import { NavLink } from "react-router-dom";
+
 function Navbar() {
+	const { color } = useTheme();
+
 	return (
-		<div className={styles.navbar}>
+		<div className={styles.navbar} style={{ background: color }}>
 			<nav>
 				<NavLink className={styles.brand} to="/">
 					<h1>Recipify</h1>
