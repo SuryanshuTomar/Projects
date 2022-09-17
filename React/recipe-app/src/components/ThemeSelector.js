@@ -9,7 +9,7 @@ import moonIcon from "../assets/nightlight_FILL0_wght400_GRAD0_opsz48.svg";
 
 function ThemeSelector() {
 	const { changeColor, changeMode, mode } = useTheme();
-	const themeColors = ["#58249c", "#249c6b", "#b70233"];
+	const themeColors = ["#58249c", "#249c6b", "#FF69B4"];
 
 	const toggleModeHandler = (event) => {
 		if (mode === "light") {
