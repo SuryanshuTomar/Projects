@@ -1,6 +1,6 @@
 // react
-import React from "react";
-import { useFetch } from "../../hooks/useFetch";
+import { useState, useEffect } from "react";
+// import { useFetch } from "../../hooks/useFetch";
 
 // styles
 import styles from "./Recipe.module.css";
@@ -9,11 +9,32 @@ import { useTheme } from "../../hooks/useTheme";
 // react router
 import { useParams } from "react-router-dom";
 
+// firebase
+import { doc, getDoc } from "firebase/firestore";
+import { projectFirestore } from "../../firebase/config";
+
 function Recipe() {
-	const { id } = useParams();
-	const url = `http://localhost:3000/recipes/${id}`;
-	const { data: recipe, isPending, error } = useFetch(url);
 	const { mode } = useTheme();
+	const { id } = useParams();
+
+	const [recipe, setRecipe] = useState(null);
+	const [isPending, setIsPending] = useState(false);
+	const [error, setError] = useState(false);
+
+	useEffect(() => {
+		setIsPending(true);
+		const docRef = doc(projectFirestore, "recipes", id);
+		getDoc(docRef).then((doc) => {
+			if (doc.exists()) {
+				setError("");
+				setIsPending(false);
+				setRecipe(doc.data());
+			} else {
+				setError("Could not find the Recipe !");
+				setIsPending(false);
+			}
+		});
+	}, [id]);
 
 	return (
 		<div className={`${styles.recipe} ${mode === "dark" && styles.dark}`}>
