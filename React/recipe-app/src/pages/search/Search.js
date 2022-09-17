@@ -5,10 +5,10 @@ import RecipeList from "../../components/RecipeList";
 import { useFetch } from "../../hooks/useFetch";
 
 // styles
-import styles from "./Search.module.css";
+// import styles from "./Search.module.css";
 
 function Search() {
-	const [queryString, setQueryString] = useSearchParams();
+	const [queryString] = useSearchParams();
 	const query = queryString.get("query");
 	const url = `http://localhost:3000/recipes?q=${query}`;
 	const { data: searchRecipes, isPending, error } = useFetch(url);

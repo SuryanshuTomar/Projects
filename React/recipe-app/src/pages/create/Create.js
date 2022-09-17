@@ -14,10 +14,7 @@ function Create() {
 	const [ingredients, setIngredients] = useState([]);
 	const ingredientRef = useRef(null);
 
-	const { data, postData, error } = useFetch(
-		"http://localhost:3000/recipes",
-		"POST"
-	);
+	const { data, postData } = useFetch("http://localhost:3000/recipes", "POST");
 
 	const navigate = useNavigate();
 
