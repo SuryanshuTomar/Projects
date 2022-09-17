@@ -1,6 +1,6 @@
 // react
-// import { useState } from "react";
-import { useFetch } from "../../hooks/useFetch";
+import { useState, useEffect } from "react";
+// import { useFetch } from "../../hooks/useFetch";
 
 // styles
 import styles from "./Home.module.css";
@@ -8,12 +8,45 @@ import styles from "./Home.module.css";
 // components
 import RecipeList from "../../components/RecipeList";
 
+// firebase
+import { getDocs, collection } from "firebase/firestore";
+import { projectFirestore } from "../../firebase/config";
+
 function Home() {
-	const {
-		data: recipes,
-		isPending,
-		error,
-	} = useFetch(" http://localhost:3000/recipes");
+	const [recipes, setRecipes] = useState(null);
+	const [isPending, setIsPending] = useState(false);
+	const [error, setError] = useState(false);
+
+	// const {
+	// 	data: recipes,
+	// 	isPending,
+	// 	error,
+	// } = useFetch("http://localhost:3000/recipes");
+
+	useEffect(() => {
+		// -> Collection Ref
+		const recipesColRef = collection(projectFirestore, "recipes");
+
+		setIsPending(true);
+		getDocs(recipesColRef)
+			.then((snapshot) => { 
+				if (snapshot.empty) {
+					setError("No recipes to load !");
+				} else {
+					setError("");
+					let result = [];
+					snapshot.docs.forEach((doc) => {
+						result.push({ ...doc.data(), id: doc.id });
+					});
+					setRecipes(result);
+				}
+				setIsPending(false);
+			})
+			.catch((error) => {
+				setError(error.message);
+				setIsPending(false);
+			});
+	}, []);
 
 	return (
 		<div className={styles.home}>
