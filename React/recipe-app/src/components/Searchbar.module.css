@@ -1,0 +1,17 @@
+.searchbar form {
+	display: flex;
+	align-items: center;
+	transition: all 1s ease;
+}
+
+.searchbar input {
+	height: 2.25rem;
+	width: 65%;
+	margin-left: 10px;
+}
+
+@media (max-width: 800px) {
+	.searchbar form {
+		flex-direction: column;
+	}
+}
