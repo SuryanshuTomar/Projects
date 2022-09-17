@@ -5,7 +5,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 //style
-import styles from "./Recipe.module.css";
+import styles from "./RecipeList.module.css";
 
 function RecipeList({ recipes }) {
 	return (
