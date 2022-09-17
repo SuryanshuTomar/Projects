@@ -8,6 +8,10 @@ import { Link } from "react-router-dom";
 import styles from "./RecipeList.module.css";
 
 function RecipeList({ recipes }) {
+	if (recipes.length === 0) {
+		return <div className="error">No Recipes found....</div>;
+	}
+
 	return (
 		<div className={styles["recipe-list"]}>
 			{recipes.map((recipe) => (
