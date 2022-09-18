@@ -6,6 +6,10 @@ import { useNavigate } from "react-router-dom";
 // style
 import styles from "./Create.module.css";
 
+// firebase
+import { projectFirestore } from "../../firebase/config";
+import { addDoc, collection } from "firebase/firestore";
+
 function Create() {
 	const [title, setTitle] = useState("");
 	const [method, setMethod] = useState("");
@@ -14,8 +18,10 @@ function Create() {
 	const [ingredients, setIngredients] = useState([]);
 	const ingredientRef = useRef(null);
 
-	const { data, postData } = useFetch("http://localhost:3000/recipes", "POST");
+	// For JSON server
+	// const { data, postData } = useFetch("http://localhost:3000/recipes", "POST");
 
+	const data = [];
 	const navigate = useNavigate();
 
 	const onSubmitHandler = (event) => {
@@ -25,21 +31,31 @@ function Create() {
 		setCookingTime("");
 		setNewIngredient("");
 		setIngredients([]);
-		postData({
+
+		const colRef = collection(projectFirestore, "recipes");
+		const doc = {
 			title,
 			ingredients,
 			method,
 			cookingTime: cookingTime + " minutes",
-		});
+		};
+
+		addDoc(colRef, doc)
+			.then((doc) => {
+				data.push(doc);
+				navigate("/");
+			})
+			.catch((error) => console.log(error));
 	};
 
+	// For JSON server
 	// redirect the use when we get the data response
-	useEffect(() => {
-		if (data) {
-			console.log(data);
-			navigate("/");
-		}
-	}, [data, navigate]);
+	// useEffect(() => {
+	// 	if (data) {
+	// 		console.log(data);
+	// 		navigate("/");
+	// 	}
+	// }, [data, navigate]);
 
 	const addIngredientsHandler = (event) => {
 		event.preventDefault();
