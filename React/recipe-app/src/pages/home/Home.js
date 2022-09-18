@@ -9,7 +9,7 @@ import styles from "./Home.module.css";
 import RecipeList from "../../components/RecipeList";
 
 // firebase
-import { getDocs, collection } from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
 import { projectFirestore } from "../../firebase/config";
 
 function Home() {
@@ -29,8 +29,9 @@ function Home() {
 		const recipesColRef = collection(projectFirestore, "recipes");
 
 		setIsPending(true);
-		getDocs(recipesColRef)
-			.then((snapshot) => {
+		const unsubDocsRef = onSnapshot(
+			recipesColRef,
+			(snapshot) => {
 				if (snapshot.empty) {
 					setError("No recipes to load !");
 				} else {
@@ -42,11 +43,16 @@ function Home() {
 					setRecipes(result);
 				}
 				setIsPending(false);
-			})
-			.catch((error) => {
+			},
+			(error) => {
 				setError(error.message);
 				setIsPending(false);
-			});
+			}
+		);
+
+		// useEffect Clean up function
+		// Unsubscribing to the "recipes" collection ref subscription from onSnapShot
+		return () => unsubDocsRef();
 	}, []);
 
 	return (
