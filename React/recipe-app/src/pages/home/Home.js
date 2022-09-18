@@ -17,6 +17,7 @@ function Home() {
 	const [isPending, setIsPending] = useState(false);
 	const [error, setError] = useState(false);
 
+	// For JSON server
 	// const {
 	// 	data: recipes,
 	// 	isPending,
@@ -29,7 +30,7 @@ function Home() {
 
 		setIsPending(true);
 		getDocs(recipesColRef)
-			.then((snapshot) => { 
+			.then((snapshot) => {
 				if (snapshot.empty) {
 					setError("No recipes to load !");
 				} else {
