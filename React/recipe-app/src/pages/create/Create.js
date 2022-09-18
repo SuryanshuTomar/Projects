@@ -1,6 +1,6 @@
 // react
-import { useState, useRef, useEffect } from "react";
-import { useFetch } from "../../hooks/useFetch";
+import { useState, useRef } from "react";
+// import { useFetch } from "../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
 
 // style

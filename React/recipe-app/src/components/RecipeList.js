@@ -3,7 +3,7 @@ import React from "react";
 import { useTheme } from "../hooks/useTheme";
 
 // react-router
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 //style
 import styles from "./RecipeList.module.css";
@@ -15,7 +15,6 @@ import { doc, deleteDoc } from "firebase/firestore";
 
 function RecipeList({ recipes }) {
 	const { mode } = useTheme();
-	const navigate = useNavigate();
 
 	if (recipes.length === 0) {
 		return <div className="error">No Recipes found....</div>;
@@ -29,8 +28,6 @@ function RecipeList({ recipes }) {
 			})
 			.catch((err) => console.log(err));
 	};
-
-	console.log(styles.delete);
 
 	return (
 		<div className={styles["recipe-list"]}>
