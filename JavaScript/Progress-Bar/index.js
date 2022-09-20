@@ -11,8 +11,10 @@ progressValue.addEventListener("keyup", changeProgressBar);
 // Event Handlers
 function changeProgressBar(event) {
 	progressBar.removeAttribute("id");
-	progressBar.style.width = `${Number(event.target.value)}%`;
-	progressBar.textContent = `${event.target.value}%`;
+	let inputValue = Number(event.target.value);
+	if (inputValue > 100) inputValue = 100;
+	progressBar.style.width = `${inputValue}%`;
+	progressBar.textContent = `${inputValue}%`;
 }
 function upload() {
 	progressBar.setAttribute("id", "play-animation");
