@@ -1,0 +1,39 @@
+/* Classes */
+.container {
+	height: 2rem;
+	background-color: #ccc;
+	position: relative;
+	margin: 1rem;
+	border-radius: 10px;
+}
+
+.container .progress-bar {
+	position: absolute;
+	top: -2px;
+	height: 110%;
+	background: linear-gradient(90deg, violet, pink);
+	border-radius: 10px;
+	text-align: center;
+	padding-top: 0.5rem;
+	box-sizing: border-box;
+	transition: width 1.5s ease-in-out;
+}
+
+.upload {
+	margin: 10px;
+}
+
+/* IDs */
+#play-animation {
+	animation: progress-animation 4s forwards;
+}
+
+/* Animations  */
+@keyframes progress-animation {
+	0% {
+		width: 0%;
+	}
+	100% {
+		width: 100%;
+	}
+}
