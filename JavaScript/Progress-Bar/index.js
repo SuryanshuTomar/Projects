@@ -16,6 +16,7 @@ function changeProgressBar(event) {
 	progressBar.style.width = `${inputValue}%`;
 	progressBar.textContent = `${inputValue}%`;
 }
+
 function upload() {
 	progressBar.setAttribute("id", "play-animation");
 	progressBar.textContent = `Uploading....`;
