@@ -44,7 +44,6 @@ body {
 .progressbar-container {
 	width: 80%;
 	height: 2rem;
-	background-color: #ccc;
 	position: relative;
 	margin: 1rem;
 	border-radius: 10px;
