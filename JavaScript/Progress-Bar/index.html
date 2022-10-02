@@ -5,18 +5,19 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="styles.css" />
+		<script src="./index.js" defer></script>
 		<title>Progress Bar</title>
 	</head>
 	<body>
-		<h1>Progress Bar</h1>
 		<div class="container">
-			<div class="progress-bar"></div>
+			<h1>Progress Bar</h1>
+			<div class="progressbar-container">
+				<div class="progress-bar"></div>
+			</div>
+			<label for="progress-value">Enter Progress Bar Value :</label><br />
+			<input id="progress-value" type="number" min="0" max="100" />
+
+			<button class="upload">Upload</button>
 		</div>
-
-		<label for="progress-value">Enter Progress Bar Value :</label>
-		<input id="progress-value" type="number" min="0" max="100" />
-
-		<button class="upload">Upload</button>
-		<script src="./index.js"></script>
 	</body>
 </html>
