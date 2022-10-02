@@ -1,0 +1,62 @@
+* {
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	box-sizing: border-box;
+	background-color: antiquewhite;
+}
+
+h3 {
+	text-align: center;
+	padding: 1rem 1.5rem;
+	border-radius: 10px;
+	background-color: lightgoldenrodyellow;
+}
+
+h1,
+p,
+.active {
+	margin-top: 0.75rem;
+	background-color: palegoldenrod;
+}
+
+header > h1 {
+	font-size: 2rem;
+	transform: translateY(100%);
+	background-color: transparent;
+}
+
+.container {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.tabs-container {
+	width: 30rem;
+	height: 30rem;
+	border-radius: 5px;
+	display: flex;
+	justify-content: space-around;
+	background-color: lightyellow;
+}
+
+.home,
+.about,
+.price {
+	position: relative;
+	padding: 2rem;
+	background-color: lightyellow;
+}
+
+.content-container {
+	position: absolute;
+	width: 26.75rem;
+	margin-top: 7rem;
+	padding: 1.5rem 1rem;
+	border-radius: 10px;
+	z-index: 1;
+	background-color: palegoldenrod;
+}
