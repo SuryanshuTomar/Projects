@@ -6,7 +6,16 @@ const Base = ({ addBase, pizza }) => {
 	const bases = ["Classic", "Thin & Crispy", "Thick Crust"];
 
 	return (
-		<div className="base container">
+		<motion.div
+			className="base container"
+			initial={{ x: "100vw" }}
+			animate={{ x: 0 }}
+			transition={{
+				delay: 0.5,
+				type: "spring",
+				stiffness: 120,
+			}}
+		>
 			<h3>Step 1: Choose Your Base</h3>
 			<ul>
 				{bases.map((base) => {
@@ -24,13 +33,17 @@ const Base = ({ addBase, pizza }) => {
 					className="next"
 					initial={{ x: "-100vw" }}
 					animate={{ x: 0 }}
+					transition={{
+						type: "spring",
+						stiffness: 120,
+					}}
 				>
 					<Link to="/toppings">
 						<button>Next</button>
 					</Link>
 				</motion.div>
 			)}
-		</div>
+		</motion.div>
 	);
 };
 
