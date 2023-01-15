@@ -35,11 +35,12 @@ body {
 }
 
 div {
-	min-width: 50vw;
 	display: flex;
 	flex-direction: column;
 	place-items: center;
 	white-space: pre-wrap;
+	min-width: 50vw;
+	margin: 2rem;
 }
 
 h1 {
