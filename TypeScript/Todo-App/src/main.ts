@@ -19,14 +19,18 @@ const initApp = (): void => {
 
 		const input = document.getElementById("newItem") as HTMLInputElement;
 		const newEntryText: string = input.value.trim();
+		input.value = "";
 
 		// simply return if the input is empty
-		if (!newEntryText) return;
+		if (!newEntryText) {
+			alert("List cannot be empty !!!");
+			return;
+		}
 		// if (!newEntryText.length) return;
 
 		// calculate the listItem id
 		const itemId: number = fullList.list.length
-			? parseInt(fullList.list[fullList.list.length - 1].id)
+			? parseInt(fullList.list[fullList.list.length - 1].id) + 1
 			: 1;
 
 		// create new item
