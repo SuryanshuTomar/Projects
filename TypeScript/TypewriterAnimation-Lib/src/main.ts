@@ -4,25 +4,27 @@ import Typewriter from "./Typewriter";
 // Typwriter Example -
 // create an element for typewriter animation
 const div = document.createElement("div");
+const hr1 = document.createElement("hr");
+document.body.append(hr1);
 document.body.append(div);
 
 // Initialize Typewriter
 // const typewriter = new Typewriter(div);
 const typewriter = new Typewriter(div, {
 	loop: true,
-	typingSpeed: 10,
-	deletingSpeed: 10,
+	typingSpeed: 70,
+	deletingSpeed: 70,
 });
 
 // Start Animation
 typewriter
 	.typeString("Where do I start?")
 	.pauseFor(1000)
-	.typeString("\n\nfunctio")
-	.deleteChars(7)
-	.typeString("const temp")
+	.typeString("\n\nfunction learn() { ")
+	.deleteChars(19)
+	.typeString("const temp = ")
 	.pauseFor(150)
-	.deleteAll()
+	.deleteAll(50)
 	.typeString("Why is this so hard?")
 	.pauseFor(1000)
 	.typeString("\n\nDoes everyone struggle this much?")
@@ -34,12 +36,14 @@ typewriter
 		`\n\n" I'll leave that up to the me of five seconds from now on!!!"`
 	)
 	.pauseFor(1000)
-	.deleteAll(50)
+	.deleteAll()
 	.start();
 
 // ---------------------------------------------------------------------------------------------------
 // Quotes Example -
 const div2 = document.createElement("div");
+const hr2 = document.createElement("hr");
+document.body.append(hr2);
 document.body.append(div2);
 const quotes = new Typewriter(
 	div2
