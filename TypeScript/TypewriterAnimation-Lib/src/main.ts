@@ -56,10 +56,15 @@ const quotes = new Typewriter(
 
 const quotesArr = [
 	"“I always hated the fact that I was never blessed with any magic. But in place of that, I was blessed with wonderful teammates.” – Asta",
+
 	"“Quit giving up! What you’re doing right now is running away! You just stopped thinking and locked yourself up in darkness because it’s easier that way!” -Asta",
+
 	"“Even if you weren’t chosen, even if you weren’t wanted, even if you aren’t forgiven… You need to stand your ground no matter how pathetic you are!” – Asta",
+
 	"“I’ve been facing adversity from the day I was born! No matter how many of you there are, or what happens, I’ll overcome it all.” – Asta",
+
 	"“If you don’t give up, you’ll get through.” – Asta",
+
 	"“Even if you think you might lose, you’ll be fine as long as you don’t give up! Surpass your limits. Then a path will open up for you!” – Yami",
 ];
 
