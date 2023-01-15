@@ -1,3 +1,5 @@
+import Queue from "./Queue";
+
 type OptionsType = {
 	loop?: boolean;
 	typingSpeed?: number;
@@ -10,7 +12,8 @@ export default class Typewriter {
 	// queue for storing actions/events like typeString, deleteChars, deleteAll, pauseFor
 	// before calling the start method which will then execute all the tasks in the queue
 	// for us
-	#queue: TaskQueue[] = [];
+	// #queue = new Array<TaskQueue>(); // using arrays
+	#queue = new Queue<TaskQueue>(); // using custom queue
 
 	constructor(
 		private _element: HTMLElement,
@@ -143,13 +146,13 @@ export default class Typewriter {
 
 	// start typing animation
 	async start() {
-		let taskCb = this.#queue.shift();
+		let taskCb = this.#queue.pop();
 		while (taskCb) {
 			await taskCb();
 
 			// if loop is true then add the taskCb back to the queue
 			if (this.options.loop) this.#queue.push(taskCb);
-			taskCb = this.#queue.shift();
+			taskCb = this.#queue.pop();
 		}
 		return this;
 	}
