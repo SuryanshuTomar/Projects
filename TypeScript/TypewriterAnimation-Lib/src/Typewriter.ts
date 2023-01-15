@@ -6,14 +6,7 @@ type OptionsType = {
 
 type TaskQueue = () => Promise<void>;
 
-interface TypewriterInterface {
-	element: HTMLElement;
-	options: OptionsType;
-}
-
-export default class Typewriter implements TypewriterInterface {
-	// #childElement: HTMLElement;
-   
+export default class Typewriter {
 	// queue for storing actions/events like typeString, deleteChars, deleteAll, pauseFor
 	// before calling the start method which will then execute all the tasks in the queue
 	// for us
@@ -26,28 +19,26 @@ export default class Typewriter implements TypewriterInterface {
 			typingSpeed: 50,
 			deletingSpeed: 50,
 		}
-	) {
-		// this.#childElement = document.createElement("div");
-		// this.element.append(this.#childElement);
-	}
+	) {}
 
-	set element(elem: HTMLElement) {
+	private set element(elem: HTMLElement) {
 		this._element = elem;
 	}
 
-	get element(): HTMLElement {
+	private get element(): HTMLElement {
 		return this._element;
 	}
 
-	set options(options: OptionsType) {
+	private set options(options: OptionsType) {
 		this.options = options;
 	}
 
-	get options(): OptionsType {
+	private get options(): OptionsType {
 		return this._options;
 	}
 
-	// this will type the text content
+	// typeString(stringValue) => This will type the text content on the
+	//  page for single string value
 	typeString(string: string) {
 		// add string to the task queue which will return a promise
 		// and the promise will render the typeSting to the page after its
@@ -64,6 +55,36 @@ export default class Typewriter implements TypewriterInterface {
 				}
 			}, this.options.typingSpeed);
 		});
+		return this;
+	}
+
+	// typeString(string array) => This will type the text content
+	// on the page for array of string values
+	typeStringArr(
+		array: Array<string>,
+		typeSpeed = this.options.typingSpeed,
+		deleteSpeed = this.options.deletingSpeed,
+		pauseTime = 1000
+	) {
+		// add string to the task queue which will return a promise
+		// and the promise will render the typeSting to the page after its
+		// gets resolved
+		for (let stringItem of array) {
+			this.#addToQueue((resolve) => {
+				// render typeString to the page
+				let i = 0;
+				const typeInterval = setInterval(() => {
+					this.element.append(stringItem[i]);
+					i++;
+					if (i >= stringItem.length) {
+						clearInterval(typeInterval);
+						resolve();
+					}
+				}, typeSpeed);
+			});
+			this.pauseFor(pauseTime);
+			this.deleteAll(deleteSpeed);
+		}
 		return this;
 	}
 
@@ -122,8 +143,13 @@ export default class Typewriter implements TypewriterInterface {
 
 	// start typing animation
 	async start() {
-		for (let taskCb of this.#queue) {
+		let taskCb = this.#queue.shift();
+		while (taskCb) {
 			await taskCb();
+
+			// if loop is true then add the taskCb back to the queue
+			if (this.options.loop) this.#queue.push(taskCb);
+			taskCb = this.#queue.shift();
 		}
 		return this;
 	}
