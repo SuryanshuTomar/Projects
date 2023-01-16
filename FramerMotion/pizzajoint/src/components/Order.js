@@ -10,9 +10,12 @@ const containerVariants = {
 		opacity: 1,
 		x: 0,
 		transition: {
-			delay: 0.5,
 			type: "spring",
-			stiffness: 120,
+			mass: 0.8,
+			damping: 20,
+			// stiffness: 120,
+			when: "beforeChildren", // animation variant orchestration
+			staggerChildren: 1.5,
 		},
 	},
 };
