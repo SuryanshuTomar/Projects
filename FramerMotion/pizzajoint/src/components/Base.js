@@ -31,6 +31,20 @@ const nextVariants = {
 	},
 };
 
+const buttonVariants = {
+	hover: {
+		// scale: [1, 1.1, 1, 1.1, 1, 1.1, 1], // keyframes
+		scale: 1.1,
+		textShadow: "0 0 8px rgb(255, 255, 255)", // white shadow
+		boxShadow: "0 0 8px white", // white shadow
+		transition: {
+			// yoyo: 10 // no of keyframes
+			yoyo: Infinity, // infinite
+			duration: 0.3,
+		},
+	},
+};
+
 const Base = ({ addBase, pizza }) => {
 	const bases = ["Classic", "Thin & Crispy", "Thick Crust"];
 
@@ -70,13 +84,7 @@ const Base = ({ addBase, pizza }) => {
 				<motion.div className="next" variants={nextVariants}>
 					{/* We dont need to mention the initial and animate property in the child element if its both parent and child elements are using variants with same variants property names */}
 					<Link to="/toppings">
-						<motion.button
-							whileHover={{
-								scale: 1.1,
-								textShadow: "0 0 8px white",
-								boxShadow: "0 0 8px white",
-							}}
-						>
+						<motion.button variants={buttonVariants} whileHover="hover">
 							Next
 						</motion.button>
 					</Link>
