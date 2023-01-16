@@ -10,12 +10,19 @@ const containerVariants = {
 		opacity: 1,
 		x: 0,
 		transition: {
+			// delay: 0.5,
 			type: "spring",
-			mass: 0.8,
-			damping: 20,
+			mass: 0.8, // how much heaving is element
+			damping: 10, // decrease the force of spring type
 			// stiffness: 120,
 			when: "beforeChildren", // animation variant orchestration
-			staggerChildren: 1.5,
+			staggerChildren: 1.1, // in secs
+		},
+	},
+	exit: {
+		x: "-100vw",
+		transition: {
+			ease: "easeInOut",
 		},
 	},
 };
@@ -36,6 +43,7 @@ const Order = ({ pizza }) => {
 			variants={containerVariants}
 			initial="hidden"
 			animate="visible"
+			exit="exit"
 		>
 			<h2>Thank you for your order :)</h2>
 			<motion.p variants={childVariants}>
