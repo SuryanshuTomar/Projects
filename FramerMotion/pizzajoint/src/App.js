@@ -30,8 +30,8 @@ function App() {
 		<>
 			<Header />
 			<AnimatePresence exitBeforeEnter>
-      {/* AnimatePresence will know about the route changes when we pass the location and key  */}
-      {/* props to the Switch components and will know when to exit. */}
+				{/* AnimatePresence will know about the route changes when we pass the location and key  */}
+				{/* props to the Switch components and it will know when to exit. */}
 				<Switch location={location} key={location.key}>
 					<Route path="/base">
 						<Base addBase={addBase} pizza={pizza} />
