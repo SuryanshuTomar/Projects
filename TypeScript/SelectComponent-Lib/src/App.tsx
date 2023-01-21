@@ -15,20 +15,25 @@ function App() {
 
 	return (
 		<div>
-			<Select
-				multiple
-				options={options}
-				value={value1}
-				onChange={(option) => setValue1(option)}
-			/>
-			<br />
-			<hr />
-			<br />
-			<Select
-				options={options}
-				value={value2}
-				onChange={(option) => setValue2(option)}
-			/>
+			<h1>SELECT COMPONENTS</h1>
+			<div className="container">
+				<h2>Multi-Select Component</h2>
+				<Select
+					multiple
+					options={options}
+					value={value1}
+					onChange={(option) => setValue1(option)}
+				/>
+				<br />
+				<hr />
+				<br />
+				<h2>Single-Select Component</h2>
+				<Select
+					options={options}
+					value={value2}
+					onChange={(option) => setValue2(option)}
+				/>
+			</div>
 		</div>
 	);
 }
