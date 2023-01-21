@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./Select.module.css";
 
 export type SelectOption = {
@@ -25,6 +25,7 @@ type SelectProps = {
 function Select({ multiple, value, onChange, options }: SelectProps) {
 	const [isOpen, setIsOpen] = useState(false);
 	const [highlightedIndex, setHighlightedIndex] = useState<number>(0);
+	const refContainer = useRef<HTMLDivElement>(null);
 
 	const clearOptions = (event: React.MouseEvent<HTMLButtonElement>) => {
 		event.stopPropagation();
@@ -34,7 +35,8 @@ function Select({ multiple, value, onChange, options }: SelectProps) {
 	const selectOption = (
 		event:
 			| React.MouseEvent<HTMLLIElement>
-			| React.MouseEvent<HTMLButtonElement>,
+			| React.MouseEvent<HTMLButtonElement>
+			| KeyboardEvent,
 		option: SelectOption
 	) => {
 		event.stopPropagation();
@@ -64,9 +66,53 @@ function Select({ multiple, value, onChange, options }: SelectProps) {
 		if (isOpen) setHighlightedIndex(0);
 	}, [isOpen]);
 
+	useEffect(() => {
+		const keyboardEventHandler = (event: KeyboardEvent) => {
+			if (event.target == refContainer.current) {
+				switch (
+					event.code // event.code gets which event occured like which button pressed etc
+				) {
+					case "Enter":
+					case "Space":
+						setIsOpen((prevIsOpen) => !prevIsOpen);
+						if (isOpen) selectOption(event, options[highlightedIndex]);
+						break;
+					case "ArrowDown":
+					case "ArrowUp": {
+						if (!isOpen) {
+							setIsOpen(true);
+							break;
+						}
+
+						const newValue =
+							highlightedIndex + (event.code === "ArrowDown" ? 1 : -1);
+
+						if (newValue >= 0 && newValue < options.length) {
+							setHighlightedIndex(newValue);
+						}
+						break;
+					}
+					case "Escape":
+						setIsOpen(false);
+						break;
+				}
+			}
+		};
+
+		refContainer.current?.addEventListener("keydown", keyboardEventHandler);
+
+		return () => {
+			refContainer.current?.removeEventListener(
+				"keydown",
+				keyboardEventHandler
+			);
+		};
+	}, [isOpen, highlightedIndex, options]);
+
 	return (
 		// Giving tabIndex so that we can focus on this container by clicking or using tab
 		<div
+			ref={refContainer}
 			onBlur={() => setIsOpen(false)}
 			onClick={() => setIsOpen(!isOpen)}
 			tabIndex={0}
