@@ -17,7 +17,8 @@ const postsSlice = createSlice({
 	name: "posts",
 	initialState,
 	reducer: {},
-}); 
+});
 
-export default postsSlice.reducer;
-export const {  } = postsSlice.actions;
+export default postsSlice.reducer; // reducer for posts
+export const {} = postsSlice.actions; // posts actions
+export const selectAllPosts = (state) => state.posts; // selector for useSelector hook
