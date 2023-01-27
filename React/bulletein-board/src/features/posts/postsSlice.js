@@ -23,12 +23,13 @@ const postsSlice = createSlice({
 			// provide the values to the reducer.
 			// the prepare method will take the states content and return the action payload
 			// as it needs to be formatted and then it will be passed to the reducer
-			prepare: (title, content) => {
+			prepare: (title, content, userId) => {
 				return {
 					payload: {
 						id: nanoid(),
 						title,
 						content,
+						userId,
 					},
 				};
 			},
