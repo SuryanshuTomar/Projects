@@ -3,6 +3,7 @@ import { selectAllPosts } from "./postsSlice";
 import React, { useState } from "react";
 import PostAuthor from "./PostAuthor";
 import TimeAgo from "./TimeAgo";
+import ReactionButtons from "./ReactionButtons";
 
 const PostsList = () => {
 	const posts = useSelector(selectAllPosts);
@@ -25,22 +26,25 @@ const PostsList = () => {
 				<PostAuthor userId={post.userId} />
 				<TimeAgo timeStamp={post.date} />
 			</p>
+
+			<ReactionButtons post={post} />
 		</article>
 	));
+
 	return (
 		<section>
 			<h2>Posts</h2>
 			<div style={{ padding: "20px 0px" }}>
 				<span>Order : </span>
 				<button
-					class="material-symbols-outlined"
-					onClick={() => setPostAscending(true)}
+					className="material-symbols-outlined"
+					onClick={() => setPostAscending(false)}
 				>
 					arrow_upward
 				</button>
 				<button
-					class="material-symbols-outlined"
-					onClick={() => setPostAscending(false)}
+					className="material-symbols-outlined"
+					onClick={() => setPostAscending(true)}
 				>
 					arrow_downward
 				</button>
