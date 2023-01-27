@@ -67,3 +67,9 @@ form {
 	color: whitesmoke;
 	font-size: 1rem;
 }
+
+.material-symbols-outlined {
+	margin: 2px;
+	background: none;
+	color: white;
+}
