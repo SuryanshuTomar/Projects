@@ -1,5 +1,6 @@
 import React, { createContext, ReactElement, useState, useEffect } from "react";
 
+// SKU, in full stock keeping unit, a code number, typically used as a machine-readable bar code, assigned to a single item of inventory. As part of a system for inventory control, the SKU represents the smallest unit of a product that can be sold from inventory, purchased, or added to inventory.
 export type ProductType = {
 	sku: string;
 	name: string;
