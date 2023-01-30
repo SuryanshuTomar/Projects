@@ -4,7 +4,7 @@ type PropTypes = {
 };
 
 function Navbar({ viewCart, setViewCart }: PropTypes) {
-	const button = false ? (
+	const button = viewCart ? (
 		<button onClick={() => setViewCart(false)}>View Products</button>
 	) : (
 		<button onClick={() => setViewCart(true)}>View Cart</button>
