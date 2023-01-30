@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
 :root {
 	font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
 	font-size: 16px;
@@ -7,18 +8,12 @@
 
 	color-scheme: light dark;
 	color: rgba(255, 255, 255, 0.87);
-	background-color: #242424;
-
-	font-synthesis: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-text-size-adjust: 100%;
+	background-color: #222;
 }
 
 * {
 	margin: 0;
-	padding: 0;
+	padding: 3px 0;
 	box-sizing: border-box;
 }
 
@@ -73,11 +68,11 @@ img {
 }
 
 .header {
-	background-color: #fff;
+	background-color: #222;
 	position: sticky;
 	top: 0;
 	z-index: 1;
-	border-bottom: 1px solid #000;
+	border-bottom: 1px solid #fff;
 }
 
 .header__title-bar {
