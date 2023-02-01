@@ -24,6 +24,34 @@ select {
 	margin-bottom: 1em;
 }
 
+header {
+	padding: 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	background-color: purple;
+	color: whitesmoke;
+	position: sticky;
+	top: 0;
+}
+
+header a {
+	color: white;
+	text-decoration: none;
+}
+
+header ul {
+	min-width: 200px;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 1rem;
+}
+
+header li {
+	list-style: none;
+	/* margin-left: 1.2em; */
+}
+
 main {
 	max-width: 500px;
 	margin: auto;
@@ -71,5 +99,26 @@ form {
 .material-symbols-outlined {
 	margin: 2px;
 	background: none;
+	color: white;
+}
+
+.excerpt {
+	font-style: italic;
+}
+
+a {
+	color: #777;
+}
+
+.reactionButton {
+	margin: 0 0.25em 0 0;
+	background: transparent;
+	border: none;
+	color: #000;
+	font-size: 1rem;
+}
+
+.deleteButton {
+	background-color: palevioletred;
 	color: white;
 }
