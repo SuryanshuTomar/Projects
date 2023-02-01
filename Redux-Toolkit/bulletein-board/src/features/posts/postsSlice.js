@@ -54,6 +54,30 @@ export const addNewPost = createAsyncThunk(
 	}
 );
 
+// Async Action Creator Thunk to update data of post with {id} that returns that actions that pending, fulfilled or rejected
+export const updatePost = createAsyncThunk(
+	"posts/updatePost",
+	async (postData) => {
+		const { id } = postData;
+
+		const response = await axios.put(`${POST_URL}/${id}`, postData);
+		return response.data;
+	}
+);
+
+// Async Action Creator Thunk to update data of post with {id} that returns that actions that pending, fulfilled or rejected
+export const deletePost = createAsyncThunk(
+	"posts/deletePost",
+	async (postData) => {
+		const { id } = postData;
+
+		const response = await axios.delete(`${POST_URL}/${id}`);
+		if (response?.status === 200) return postData;
+
+		return `${response.status}: ${response.statusText}`;
+	}
+);
+
 const postsSlice = createSlice({
 	name: "posts",
 	initialState,
@@ -136,6 +160,37 @@ const postsSlice = createSlice({
 				};
 				// console.log(action.payload);
 				state.posts.push(action.payload); // directly mutating the state
+			})
+			.addCase(updatePost.fulfilled, (state, action) => {
+				if (!action.payload?.id) {
+					console.log("Update could not complete !");
+					console.log(action.payload);
+					return;
+				}
+
+				const { id } = action.payload;
+				action.payload.data = new Date().toISOString();
+				const posts = state.posts.filter((post) => post.id !== id);
+				state.posts = [...posts, action.payload];
+			})
+			.addCase(updatePost.rejected, (state, action) => {
+				state.status = "failed";
+				state.error = action.error.message;
+			})
+			.addCase(deletePost.fulfilled, (state, action) => {
+				if (!action.payload?.id) {
+					console.log("Delete could not complete !");
+					console.log(action.payload);
+					return;
+				}
+
+				const { id } = action.payload;
+				const posts = state.posts.filter((post) => post.id !== id);
+				state.posts = posts;
+			})
+			.addCase(deletePost.rejected, (state, action) => {
+				state.status = "failed";
+				state.error = action.error.message;
 			});
 	},
 });
