@@ -142,6 +142,16 @@ const postsSlice = createSlice({
 
 export default postsSlice.reducer; // reducer for posts
 export const { postAdded, reactionAdded } = postsSlice.actions; // posts actions
-export const selectAllPosts = (state) => state.posts.posts; // selector for useSelector hook
-export const getPostsStatus = (state) => state.posts.status; // selector for useSelector hook
-export const getPostsError = (state) => state.posts.error; // selector for useSelector hook
+
+// selectAllPosts selector for useSelector hook
+export const selectAllPosts = (state) => state.posts.posts;
+
+// useSelector selector for useSelector hook
+export const getPostsStatus = (state) => state.posts.status;
+
+// getPostsError selector for useSelector hook
+export const getPostsError = (state) => state.posts.error;
+
+// getPostsError selector for useSelector hook
+export const getPostById = (state, postId) =>
+	state.posts.posts.find((post) => post.id === postId);
