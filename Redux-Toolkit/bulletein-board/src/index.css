@@ -41,7 +41,7 @@ header a {
 }
 
 header ul {
-	min-width: 200px;
+	min-width: 300px;
 	display: flex;
 	justify-content: space-between;
 	margin-top: 1rem;
