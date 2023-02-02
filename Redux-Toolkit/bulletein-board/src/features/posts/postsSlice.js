@@ -1,6 +1,17 @@
-import { createSlice, nanoid, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+	createSlice,
+	nanoid,
+	createAsyncThunk,
+	createSelector,
+	createDraftSafeSelector,
+	createEntityAdapter,
+} from "@reduxjs/toolkit";
 import { sub } from "date-fns";
 import axios from "axios";
+
+const postAdapter = createEntityAdapter({
+	sortComparer: (a, b) => b.date.localeCompare(a.date),
+});
 
 // const initialState = [
 // 	{
@@ -31,11 +42,11 @@ import axios from "axios";
 // 	},
 // ];
 
-const initialState = {
-	posts: [],
+const initialState = postAdapter.getInitialState({
 	status: "idle", // "idle" | "loading" | "succeeded" | "failed"
 	error: null,
-};
+	count: 0,
+});
 
 const POST_URL = "https://jsonplaceholder.typicode.com/posts";
 
@@ -113,10 +124,13 @@ const postsSlice = createSlice({
 		},
 		reactionAdded: (state, action) => {
 			const { postId, reaction } = action.payload;
-			const existingPost = state.posts.find((post) => post.id === postId);
+			const existingPost = state.entities[postId];
 			if (existingPost) {
 				existingPost.reactions[reaction]++;
 			}
+		},
+		increaseCount(state, action) {
+			state.count += 1;
 		},
 	},
 	extraReducers: (builder) => {
@@ -142,7 +156,7 @@ const postsSlice = createSlice({
 				});
 
 				// Add any fetched posts to the array
-				state.posts = state.posts.concat(loadedPosts);
+				postAdapter.upsertMany(state, loadedPosts);
 			})
 			.addCase(fetchPosts.rejected, (state, action) => {
 				state.status = "failed";
@@ -159,7 +173,7 @@ const postsSlice = createSlice({
 					coffee: 0,
 				};
 				// console.log(action.payload);
-				state.posts.push(action.payload); // directly mutating the state
+				postAdapter.addOne(state, actipn.payload); // directly mutating the state
 			})
 			.addCase(updatePost.fulfilled, (state, action) => {
 				if (!action.payload?.id) {
@@ -168,10 +182,8 @@ const postsSlice = createSlice({
 					return;
 				}
 
-				const { id } = action.payload;
 				action.payload.data = new Date().toISOString();
-				const posts = state.posts.filter((post) => post.id !== id);
-				state.posts = [...posts, action.payload];
+				postAdapter.upsertOne(state, action.payload);
 			})
 			.addCase(updatePost.rejected, (state, action) => {
 				state.status = "failed";
@@ -185,8 +197,7 @@ const postsSlice = createSlice({
 				}
 
 				const { id } = action.payload;
-				const posts = state.posts.filter((post) => post.id !== id);
-				state.posts = posts;
+				postAdapter.removeOne(state, id);
 			})
 			.addCase(deletePost.rejected, (state, action) => {
 				state.status = "failed";
@@ -195,11 +206,23 @@ const postsSlice = createSlice({
 	},
 });
 
-export default postsSlice.reducer; // reducer for posts
-export const { postAdded, reactionAdded } = postsSlice.actions; // posts actions
+// reducer for posts
+export default postsSlice.reducer;
 
-// selectAllPosts selector for useSelector hook
-export const selectAllPosts = (state) => state.posts.posts;
+// getSelectors will give us already created selectors from createEntityAdapter and we can rename them with aliases using destructring
+export const {
+	selectAll: selectAllPosts,
+	selectById: getPostById,
+	selectIds: selectPostIds,
+} =
+	// Pass in a selector that returns the state for postsSlice.
+	postAdapter.getSelectors((state) => state.posts);
+
+// posts action creators
+export const { postAdded, reactionAdded, increaseCount } = postsSlice.actions;
+
+// getCount selector for useSelector hook
+export const getCount = (state) => state.posts.count;
 
 // useSelector selector for useSelector hook
 export const getPostsStatus = (state) => state.posts.status;
@@ -207,6 +230,20 @@ export const getPostsStatus = (state) => state.posts.status;
 // getPostsError selector for useSelector hook
 export const getPostsError = (state) => state.posts.error;
 
-// getPostsError selector for useSelector hook
-export const getPostById = (state, postId) =>
-	state.posts.posts.find((post) => post.id === postId);
+// selectPostByUser selector for useSelector hook
+// Note: useSelector() hook will run every time an action is dispatched and it forces the useSelector to run again and it forces the component to re-render If a reference value is returned. So, if we somehow returning a new value to the useSelector hook then it will re-render the component tree. And we can fix this by creating a memoised selector using a createSelector function from @reduxjs/toolkit.
+// creating this selector
+// createSelector([fn1, fn2.....], cbFn) -
+// The first argument is a dependency array that takes one or more selector functions whose return values will be passed as a parameter to the cbFn which is a second parameter of the createSelector and createDraftSafeSelector Method.
+// The second parameter of createSelector and createDraftSafeSelector Method is a callBackFunction which will run if the return value of the selectors functions in the dependency array changes when we call our selectorFunction that is created from the createSelector method. And then this cb selector function will run when we call our selectorFuntion(so basically this cbFN is our selector function in which we can put our code into.)
+// So, if the value that are returned by the functions that are in the dependency array changes  then the useSelector hook will going to run our selector function otherwise not. And this how our selector function will get memoised
+export const selectPostByUser = createSelector(
+	[selectAllPosts, (state, userId) => userId],
+	(posts, userId) => posts.filter((post) => post.userId === userId)
+);
+
+// More safe option
+// export const selectPostByUser = createDraftSafeSelector(
+// 	[selectAllPosts, (state, userId) => userId],
+// 	(posts, userId) => posts.filter((post) => post.userId === userId)
+// );
