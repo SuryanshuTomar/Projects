@@ -156,7 +156,8 @@ export const {
 	useAddReactionMutation,
 } = extendedApiSlice;
 
-// returns the query result object
+// A function that accepts a cache key argument, and generates a new memoized selector for reading cached data for this endpoint using the given cache key. The generated selector is memoized using Reselect's createSelector.
+// .select(someCacheKey) returns a new selector function instance. In order for memoization to work correctly, you should create a given selector function once per cache key and reuse that selector function instance, rather than creating a new selector instance each time.
 export const selectPostsResult = extendedApiSlice.endpoints.getPosts.select();
 
 // Creates memoized selector
