@@ -1,37 +1,37 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { postAdded, addNewPost } from "./postsSlice";
+import { useSelector } from "react-redux";
+import { useAddNewPostMutation } from "./postsSlice";
 import { selectAllUsers } from "../users/usersSlice";
+import { useNavigate } from "react-router-dom";
 
 const AddPostForm = () => {
 	const users = useSelector(selectAllUsers);
-	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+	const [addNewPost, { isLoading }] = useAddNewPostMutation();
 
 	const [title, setTitle] = useState("");
 	const [content, setContent] = useState("");
 	const [userId, setUserId] = useState("");
-	const [addRequestStatus, setAddRequestStatus] = useState("idle");
 
 	const onTitleChanged = (event) => setTitle(event.target.value);
 	const onContentChanged = (event) => setContent(event.target.value);
 	const onAuthorChanged = (event) => setUserId(event.target.value);
 
-	const canSave =
-		[title, content, userId].every(Boolean) && addRequestStatus === "idle";
+	const canSave = [title, content, userId].every(Boolean) && !isLoading;
 
-	const onSavePostClicked = () => {
+	const onSavePostClicked = async () => {
 		if (canSave) {
 			try {
-				setAddRequestStatus("pending");
-				dispatch(addNewPost({ title, body: content, userId })).unwrap();
+				await addNewPost({ title, body: content, userId }).unwrap();
 				// redux toolkit adds an unwrap() function to the returned promise and then that returns a new promise that either has the action payload or it throws an error if it's the rejected action so that lets us use this try-catch logic here so it will throw an error
+
 				setTitle("");
 				setContent("");
 				setUserId("");
+				navigate("/");
 			} catch (error) {
 				console.error("Failed to save the Post : ", error);
-			} finally {
-				setAddRequestStatus("idle");
 			}
 		}
 	};

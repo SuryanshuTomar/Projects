@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import PostsExcerpt from "./PostsExcerpt";
-import { selectPostIds, getPostsStatus, getPostsError } from "./postsSlice";
+import { selectPostIds } from "./postsSlice";
+import { useGetPostsQuery } from "./postsSlice";
 
 const PostsList = () => {
+	const { isLoading, isSuccess, isError, error } = useGetPostsQuery();
+
 	const orderedPostIds = useSelector(selectPostIds);
-	const postsStatus = useSelector(getPostsStatus);
-	const postsError = useSelector(getPostsError);
 
-	const [postAscending, setPostAscending] = useState(true);
-
+	// const [postAscending, setPostAscending] = useState(true);
 	// Post in ordered manner
 	// slice will return a new shallowcopy of the posts
 	// sort will sort the post according to the date posts are created
@@ -17,19 +17,19 @@ const PostsList = () => {
 	// const orderedPosts = !postAscending
 	// 	? posts.slice().sort((a, b) => b.date.localeCompare(a.date))
 	// 	: posts;
+	// const orderedPosts = !postAscending
+	// 	? posts.slice().sort((a, b) => b.title.localeCompare(a.title))
+	// 	: posts.slice().sort((a, b) => a.title.localeCompare(b.title));
 
 	let content;
-	if (postsStatus === "loading") {
+	if (isLoading) {
 		content = <p>"Loading Posts...</p>;
-	} else if (postsStatus === "succeeded") {
-		// const orderedPosts = !postAscending
-		// 	? posts.slice().sort((a, b) => b.title.localeCompare(a.title))
-		// 	: posts.slice().sort((a, b) => a.title.localeCompare(b.title));
+	} else if (isSuccess) {
 		content = orderedPostIds.map((postId) => (
 			<PostsExcerpt key={postId} postId={postId} />
 		));
-	} else if (postsStatus === "failed") {
-		content = <p>{postsError}</p>;
+	} else if (isError) {
+		content = <p>{error}</p>;
 	}
 
 	return (

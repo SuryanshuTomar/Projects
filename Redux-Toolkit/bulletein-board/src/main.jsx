@@ -7,10 +7,11 @@ import App from "./App";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
 import { fetchUsers } from "./features/users/usersSlice";
-import { fetchPosts } from "./features/posts/postsSlice";
+import { extendedApiSlice } from "./features/posts/postsSlice";
 
 // fetching posts right when the app is starting
-store.dispatch(fetchPosts());
+// store.dispatch(fetchPosts());
+store.dispatch(extendedApiSlice.endpoints.getPosts.initiate());
 
 // fetching users right when the app is starting
 store.dispatch(fetchUsers());
