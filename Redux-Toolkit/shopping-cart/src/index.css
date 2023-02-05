@@ -40,6 +40,8 @@ img {
 
 .heading {
 	padding: 25px 0;
+	display: flex;
+	justify-content: center;
 }
 .cartCount {
 	font-weight: bold;
