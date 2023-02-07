@@ -1,11 +1,11 @@
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getCart } from "../features/cartSlice.js";
-// import { selectTotal } from "../features/cartSlice.js";
+// import { getCart } from "../features/cartSlice.js";
+import { selectTotal } from "../features/cartSlice.js";
 
 const Navbar = () => {
-	// const cart = useSelector(selectAll);
-	const cart = useSelector(getCart);
+	const total = useSelector(selectTotal);
+	// const cart = useSelector(getCart);
 
 	return (
 		<div
@@ -26,8 +26,8 @@ const Navbar = () => {
 					Cart
 				</NavLink>
 				<span className="cartCount">
-					Cart items : {cart.cartItems.length ?? 0}
-					{/* Cart items : {total} */}
+					{/* Cart items : {cart.cartItems.length ?? 0} */}
+					Cart items : {total}
 				</span>
 			</div>
 		</div>
