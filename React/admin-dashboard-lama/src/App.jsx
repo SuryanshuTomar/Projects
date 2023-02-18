@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { userInputs } from "./data/formSource";
 import Home from "./pages/home/Home";
 import List from "./pages/list/List";
 import Login from "./pages/login/Login";
@@ -21,7 +22,10 @@ function App() {
 					<Route path="products">
 						<Route index element={<List />} />
 						<Route path=":productId" element={<Single />} />
-						<Route path="new" element={<New />} />
+						<Route
+							path="new"
+							element={<New title="Add new user" inputs={userInputs} />}
+						/>
 					</Route>
 				</Route>
 				<Route path="*" element={<NotFound />} />
